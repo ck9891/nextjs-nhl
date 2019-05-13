@@ -1,18 +1,25 @@
-import Layout from '../components/MyLayout.js'
 import fetch from 'isomorphic-unfetch'
+import Link from 'next/link'
+import styled from 'styled-components'
+import Layout from '../components/MyLayout.js'
+import Player from '../components/Player.js'
+
+const PostContainer = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 15px;
+`;
 
 const Post = props => (
   <Layout>
     <h1>{props.nhlTeam[0].name}</h1>
-    <ul>
-      {props.teamRoster.map((player) => (
-        <li key={player.person.id}>
-          {/* <Link as={`/p/${player.id}`} href={`/post?id=${player.id}`}> */}
-          <span>{player.person.fullName} <strong>{player.jerseyNumber}</strong></span>{console.log(player.position)}
-          {/* </Link> */}
-        </li>
-      ))}
-    </ul>
+    <PostContainer>
+        {props.teamRoster.map((player) => (
+          <Player playerName={player.person.fullName} playerNumber={player.jerseyNumber} playerPosition={player.position.code} />
+            // <span>{player.person.fullName} <strong>{player.jerseyNumber}</strong></span>{console.log(player.position)}
+        ))}
+    </PostContainer>
   </Layout>
 )
 
