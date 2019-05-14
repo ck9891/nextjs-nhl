@@ -14,6 +14,29 @@ const PostContainer = styled.section`
 const Post = props => (
   <Layout>
     <h1>{props.nhlTeam[0].name}</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Games Played</th>
+          <th>Wins</th>
+          <th>Losses</th>
+          <th>Overtime</th>
+          <th>Points</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{props.singleSeason[0].stat.gamesPlayed}</td>
+          <td>{props.singleSeason[0].stat.wins}</td>
+          <td>{props.singleSeason[0].stat.losses}</td>
+          <td>{props.singleSeason[0].stat.ot}</td>
+          <td>{props.singleSeason[0].stat.pts}</td>
+        </tr>
+      </tbody>
+    </table>
+
     {console.log(props.singleSeason[0].stat)}
     <PostContainer>
         {props.teamRoster.map((player, k) => (
