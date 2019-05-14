@@ -68,7 +68,7 @@ Player.getInitialProps = async (context) => {
   const res = await fetch(`https://statsapi.web.nhl.com/api/v1/people/${id}`)
   const player = await res.json()
 
-  console.log('test')
+  console.log(player)
   return { player }
 }
 

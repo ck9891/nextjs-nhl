@@ -2,7 +2,6 @@ import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 import styled from 'styled-components'
 import Layout from '../components/MyLayout.js'
-import Player from '../components/Player.js'
 
 const PostContainer = styled.section`
   display: grid;
@@ -13,20 +12,19 @@ const PostContainer = styled.section`
 
 const SinglePlayer = props => (
   <Layout>
-    <h1></h1>
-    <PostContainer>
-
-    </PostContainer>
+    
+    <h1>{props.player.people[0].fullName}</h1>
+    <p>Current Team: {props.player.people[0].currentTeam.name}</p>
+    <p>Nationality: {props.player.people[0].nationality}</p>
+   { console.log(props.player)}
   </Layout>
 )
 
 SinglePlayer.getInitialProps = async function (context) {
   const { id } = context.query
-  console.log(context);
   const res = await fetch(`https://statsapi.web.nhl.com/api/v1/people/${id}`)
   const player = await res.json()
-
-  console.log('test')
+  
   return { player }
 }
 

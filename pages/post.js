@@ -14,9 +14,10 @@ const PostContainer = styled.section`
 const Post = props => (
   <Layout>
     <h1>{props.nhlTeam[0].name}</h1>
+    {console.log(props.singleSeason[0].stat)}
     <PostContainer>
         {props.teamRoster.map((player, k) => (
-          <Player playerId={player.id} playerName={player.person.fullName} playerNumber={player.jerseyNumber} playerPosition={player.position.code} />
+          <Player playerId={player.person.id} playerName={player.person.fullName} playerNumber={player.jerseyNumber} playerPosition={player.position.code} />
         ))}
     </PostContainer>
   </Layout>
@@ -28,9 +29,13 @@ Post.getInitialProps = async function (context) {
   const team = await res.json()
   const resTeam = await fetch(`https://statsapi.web.nhl.com/api/v1/teams/${id}/roster`);
   const roster = await resTeam.json();
+  const resStats = await fetch(`https://statsapi.web.nhl.com/api/v1/teams/${id}/stats`);
+  const teamStats = await resStats.json();
   const teamRoster = roster.roster;
   const nhlTeam = team.teams;
-  return { nhlTeam, teamRoster }
+  const singleSeason = teamStats.stats[0].splits;
+  console.log(singleSeason);
+  return { nhlTeam, teamRoster, singleSeason }
 }
 
 export default Post
