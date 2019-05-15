@@ -50,7 +50,7 @@ const Post = props => (
 
     <PostContainer>
         {props.teamRoster.map((player, k) => (
-          <Player playerId={player.person.id} playerName={player.person.fullName} playerNumber={player.jerseyNumber} playerPosition={player.position.code} />
+          <Player key={player.person.id} playerId={player.person.id} playerName={player.person.fullName} playerNumber={player.jerseyNumber} playerPosition={player.position.code} />
         ))}
     </PostContainer>
   </Layout>
