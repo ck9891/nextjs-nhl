@@ -1,11 +1,14 @@
 import Layout from '../components/MyLayout.js'
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
+import TeamList from '../components/TeamList.js';
 
 const Index = (props) => (
   <Layout>
     <h1>NHL Teams</h1>
-    <ul>
+    {}
+    <TeamList teams={props.teams} />
+    {/* <ul>
       {props.teams.map((team) => (
         <li key={team.id}>
           <Link as={`/p/${team.id}`} href={`/post?id=${team.id}`}>
@@ -13,7 +16,7 @@ const Index = (props) => (
           </Link>
         </li>
       ))}
-    </ul>
+    </ul> */}
   </Layout>
 )
 
@@ -22,6 +25,7 @@ Index.getInitialProps = async function () {
   const nhlData = await resNHL.json();
 
   const nhlTeams = nhlData.teams;
+  console.log(nhlTeams);
   return {
     teams: nhlTeams
   }

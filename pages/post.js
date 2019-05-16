@@ -9,6 +9,11 @@ const PostContainer = styled.section`
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 15px;
   grid-row-gap: 15px;
+  width: 900px;
+  margin: 2rem auto;
+  @media screen and (min-width:1300px) {
+    width:1300px;
+  }
 `;
 
 const TeamLogo = styled.div`
@@ -16,6 +21,7 @@ const TeamLogo = styled.div`
     display: flex;
     justify-self:center;
     max-width:200px;
+    margin: 0 auto;
   }
 `;
 
