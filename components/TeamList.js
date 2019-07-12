@@ -1,13 +1,18 @@
 import styled from 'styled-components'
 import Link from 'next/link'
+import { useSpring, animated } from 'react-spring'
+
 import fetch from 'isomorphic-unfetch'
+
+
+const calc = (x, y) => [-(y - window.innerHeight / 2) / 20, (x - window.innerWidth / 2) / 20, 1.1]
+const trans = (x, y, s) => `perspective(300px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
 
 const StyledList = styled.ul`
 width: 400px;
   li {
     list-style: none;
     margin: 25px;
-
     a {
       text-decoration: none;
 
@@ -45,11 +50,17 @@ width: 400px;
     }
   }
 `;
+const [props, set] = useSpring(() => ({ xys: [0, 0, 1], config: { mass: 5, tension: 350, friction: 40 } }))
 
 const TeamList = props => (
+
 <StyledList>
   {props.teams.map((team) => (
-    <li key={team.id}>
+
+    <animated.li
+      key={team.id}
+
+      >
       <Link as={`/p/${team.id}`} href={`/post?id=${team.id}`}>
         <a>
           <div>
