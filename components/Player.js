@@ -52,6 +52,7 @@ const StyledPlayer = styled.div`
 `;
 
 const Player = props => (
+
   <Link as={`/player/${props.playerId}`} href={`/player?id=${props.playerId}`} >
   <a>
     <StyledPlayer>
@@ -68,7 +69,7 @@ const Player = props => (
         </div>
 
         <div className="player-info">
-
+{console.log(props)}
         </div>
       </div>
     </StyledPlayer>

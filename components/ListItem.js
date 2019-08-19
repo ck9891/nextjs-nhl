@@ -46,22 +46,19 @@ const StyledItem = styled.li`
 
 const ListItem = props => (
 
-    {props.teams.map((team) => (
-
-      <StyledItem key={team.id}>
-        <Link as={`/p/${team.id}`} href={`/post?id=${team.id}`}>
+      <StyledItem key={props.id}>
+        <Link as={`/p/${props.id}`} href={`/post?id=${props.id}`}>
           <a>
             <div>
-              <img src={`https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/${team.id}.svg`} ></img>
+              <img src={`https://www-league.nhlstatic.com/images/logos/teams-current-primary-light/${props.id}.svg`} ></img>
             </div>
             <span className="team-name">
-              {team.name}
+              {props.name}
             </span>
           </a>
         </Link>
     </StyledItem>
-    ))}
 )
 
-export default TeamList;
+export default ListItem;
 
