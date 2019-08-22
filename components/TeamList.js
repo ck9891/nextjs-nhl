@@ -13,12 +13,13 @@ width: 400px;
   `;
 
 const TeamList = props => {
+  console.log(props);
   // const [props, set] = useSpring(() => ({ xys: [0, 0, 1], config: { mass: 5, tension: 350, friction: 40 } }))
+  // https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/
 return (
 <StyledList>
   {props.teams.map((team) => (
     <ListItem key={team.id} id={team.id} teamName={team.name}/>
-
   ))}
 </StyledList>
 )}
