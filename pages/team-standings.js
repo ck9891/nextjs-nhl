@@ -25,26 +25,24 @@ const TeamStandings = (props) => {
     const response = await fetch(state);
     const json = await response.json();
     const teams = json.teams
-    setState(teams)
+    let teamStats = []
+      console.log(teams)
+      teams.forEach(async element => {
+        let res = await fetch(`https://statsapi.web.nhl.com/api/v1/teams/${element.id}/stats`)
+        let j = await res.json()
+        let stats = j.stats[0].splits[0]
+        teamStats.push({
+          stats: stats.stat,
+          team: stats.team
+        })
+      });
+    setState(teamStats)
     // console.log(json)
     } getData()
 
-  }, []);
+  }, [])
   console.log(state)
-  // if (setTeam) {
-
-  //     const allTeams = data.teams
-  //   console.log(allTeams)
-  //     if (!setState){
-  //       allTeams.forEach(team => {
-  //         let test = setTeam(`https://statsapi.web.nhl.com/api/v1/teams/${team.id}/stats`)
-  //         console.log(team)
-  //         console.log()
-  //       })
-  //     }
-  //   }
-  // }
-
+//  console.log(teams)
   // const teams = json.teams
   // let standings = [];
   // if (!setTeam) {
